@@ -4,13 +4,21 @@ import { Experience } from '../models/experience.model';
 import { Metric } from '../models/metric.model';
 import { GalleryImage } from '../models/gallery-image.model';
 import { ContactRequest } from '../models/contact-request.model';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HotelDataService {
 
+  private selectedExperienceIdSubject = new BehaviorSubject<string | null>(null);
+  selectedExperienceId$ = this.selectedExperienceIdSubject.asObservable();
+
   constructor() { }
+
+  setSelectedExperienceId(id: string | null): void {
+    this.selectedExperienceIdSubject.next(id);
+  }
 
   
   getMetrics(): Metric[] {

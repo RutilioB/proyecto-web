@@ -27,7 +27,20 @@ export class ExperiencesPageComponent implements OnInit {
   constructor(private hotelDataService: HotelDataService) { }
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
     this.loadExperiences();
+    
+    this.hotelDataService.selectedExperienceId$.subscribe(experienceId => {
+      if (experienceId && this.allExperiences.length > 0) {
+        const experience = this.allExperiences.find(exp => exp.id === experienceId);
+        if (experience) {
+          setTimeout(() => {
+            this.onExperienceClick(experience);
+            this.hotelDataService.setSelectedExperienceId(null);
+          }, 100);
+        }
+      }
+    });
   }
 
   private loadExperiences(): void {

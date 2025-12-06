@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { HotelDataService } from '../../modules/hotel/services/hotel-data.service';
 import { Metric } from '../../modules/hotel/models/metric.model';
 import { Experience } from '../../modules/hotel/models/experience.model';
@@ -21,7 +22,10 @@ export class HomePageComponent implements OnInit {
     imageUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e'
   };
 
-  constructor(private hotelDataService: HotelDataService) { }
+  constructor(
+    private hotelDataService: HotelDataService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.loadMetrics();
@@ -35,5 +39,16 @@ export class HomePageComponent implements OnInit {
   private loadFeaturedExperiences(): void {
     const allExperiences = this.hotelDataService.getExperiences();
     this.featuredExperiences = allExperiences.slice(0, 3);
+  }
+
+  scrollToTop(): void {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  openExperienceDetail(experienceId: string): void {
+    this.hotelDataService.setSelectedExperienceId(experienceId);
+    this.router.navigate(['/experiencias']).then(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
   }
 }
