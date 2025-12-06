@@ -6,7 +6,6 @@ import { Component } from '@angular/core';
 })
 export class DaypassPageComponent {
 
-  // Opciones de Day Pass
   dayPassOptions = [
     {
       name: 'Day Pass Individual',
@@ -46,14 +45,12 @@ export class DaypassPageComponent {
     }
   ];
 
-  // Horarios
   schedule = {
     entrada: '9:00 AM',
     salida: '6:00 PM',
     dias: 'Todos los días'
   };
 
-  // Normas
   rules = [
     'Los niños menores de 12 años deben estar supervisados por un adulto',
     'No se permite el ingreso de alimentos o bebidas externas',

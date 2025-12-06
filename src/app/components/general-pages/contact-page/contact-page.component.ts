@@ -8,7 +8,6 @@ import { ContactRequest } from '../../modules/hotel/models/contact-request.model
 })
 export class ContactPageComponent implements OnInit {
 
-  // Modelo del formulario
   contactForm: ContactRequest = {
     nombre: '',
     email: '',
@@ -17,10 +16,8 @@ export class ContactPageComponent implements OnInit {
     mensaje: ''
   };
 
-  // Estado del formulario
   isSubmitting = false;
 
-  // Información de contacto
   contactInfo = {
     address: 'Av. Costera Miguel Alemán 123, Acapulco',
     phone: '+52 744 123 4567',
@@ -41,10 +38,8 @@ export class ContactPageComponent implements OnInit {
 
     this.isSubmitting = true;
 
-    // Enviar la solicitud usando el servicio de dominio
     this.hotelDataService.sendContactRequest(this.contactForm);
 
-    // Resetear el formulario
     this.resetForm();
     this.isSubmitting = false;
   }

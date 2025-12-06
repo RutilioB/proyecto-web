@@ -1,54 +1,22 @@
-# ============================================
-# DOCKER COMPOSE - COSTA AZUL HOTEL
-# ============================================
-#
-# Este archivo facilita el despliegue del frontend del hotel
-# usando Docker Compose.
-#
-# INSTRUCCIONES DE USO:
-#
-# 1. Para construir y levantar los servicios:
-#    docker compose up --build
-#
-# 2. Para levantar en modo detached (background):
-#    docker compose up -d
-#
-# 3. Para detener los servicios:
-#    docker compose down
-#
-# 4. Para ver logs:
-#    docker compose logs -f frontend
-#
-# 5. Acceder a la aplicación:
-#    http://localhost:8080
-#
-
 version: '3.8'
 
 services:
-  # Servicio del frontend Angular
   frontend:
-    # Nombre del contenedor
     container_name: costa-azul-frontend
     
-    # Construir desde el Dockerfile en la raíz
     build:
       context: .
       dockerfile: Dockerfile
     
-    # Mapeo de puertos: host:container
-    # La app estará disponible en http://localhost:8080
     ports:
       - "8080:80"
     
-    # Variables de entorno (si se necesitan en el futuro)
     environment:
       - NODE_ENV=production
     
-    # Política de reinicio
     restart: unless-stopped
     
-    # Healthcheck para verificar que el contenedor está saludable
+
     healthcheck:
       test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:80"]
       interval: 30s
@@ -56,24 +24,3 @@ services:
       retries: 3
       start_period: 40s
 
-# ============================================
-# NOTAS:
-#
-# - El frontend estará disponible en http://localhost:8080
-# - Para desarrollo local sin Docker, usa: npm install && ng serve
-# - Para agregar backend en el futuro, añade otro servicio aquí
-# - Ejemplo de servicio backend (para el futuro):
-#
-#   backend:
-#     container_name: costa-azul-backend
-#     build:
-#       context: ./backend
-#       dockerfile: Dockerfile
-#     ports:
-#       - "3000:3000"
-#     environment:
-#       - DATABASE_URL=postgresql://...
-#     depends_on:
-#       - database
-#
-# ============================================

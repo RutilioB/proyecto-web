@@ -12,7 +12,6 @@ export class HomePageComponent implements OnInit {
   metrics: Metric[] = [];
   featuredExperiences: Experience[] = [];
 
-  // Configuración del hero
   heroConfig = {
     title: 'Bienvenido a Costa Azul Oceanfront Hotel',
     subtitle: 'Tu paraíso frente al mar',
@@ -35,7 +34,6 @@ export class HomePageComponent implements OnInit {
 
   private loadFeaturedExperiences(): void {
     const allExperiences = this.hotelDataService.getExperiences();
-    // Mostrar solo las primeras 3 experiencias como destacadas
     this.featuredExperiences = allExperiences.slice(0, 3);
   }
 }

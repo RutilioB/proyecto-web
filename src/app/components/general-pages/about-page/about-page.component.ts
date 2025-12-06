@@ -6,7 +6,6 @@ import { Component } from '@angular/core';
 })
 export class AboutPageComponent {
 
-  // Información de la historia del hotel
   hotelInfo = {
     founded: '1998',
     location: 'Playa El Tunco, La Libertad, El Salvador',
@@ -14,7 +13,6 @@ export class AboutPageComponent {
     mission: 'Crear experiencias memorables que conecten a nuestros huéspedes con la belleza natural de El Salvador'
   };
 
-  // Valores del hotel
   values = [
     {
       title: 'Hospitalidad',

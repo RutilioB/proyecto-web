@@ -1,6 +1,4 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-
+import { Routes } from '@angular/router';
 import { HomePageComponent } from './components/general-pages/home-page/home-page.component';
 import { AboutPageComponent } from './components/general-pages/about-page/about-page.component';
 import { RoomsPageComponent } from './components/general-pages/rooms-page/rooms-page.component';
@@ -9,7 +7,7 @@ import { DaypassPageComponent } from './components/general-pages/daypass-page/da
 import { FacilitiesPageComponent } from './components/general-pages/facilities-page/facilities-page.component';
 import { ContactPageComponent } from './components/general-pages/contact-page/contact-page.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: '',
     component: HomePageComponent
@@ -43,9 +41,3 @@ const routes: Routes = [
     redirectTo: ''
   }
 ];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }

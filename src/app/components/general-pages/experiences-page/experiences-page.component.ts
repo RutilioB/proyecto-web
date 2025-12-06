@@ -12,12 +12,10 @@ export class ExperiencesPageComponent implements OnInit {
   filteredExperiences: Experience[] = [];
   selectedFilter: string = 'todas';
   
-  // Modal states
   showInfoModal = false;
   showReservaModal = false;
   selectedExperience: Experience | null = null;
 
-  // Tipos de experiencias para filtros
   experienceTypes = [
     { value: 'todas', label: 'Todas' },
     { value: 'aventura', label: 'Aventura' },

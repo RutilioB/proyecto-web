@@ -17,11 +17,9 @@ export class HeroComponent {
 
   onPrimaryButtonClick(): void {
     console.log('🎯 Botón primario del hero clickeado');
-    // TODO: Implementar acción del botón primario
   }
 
   onSecondaryButtonClick(): void {
     console.log('🎯 Botón secundario del hero clickeado');
-    // TODO: Implementar acción del botón secundario
   }
 }

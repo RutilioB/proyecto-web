@@ -11,7 +11,6 @@ export interface MenuItem {
 })
 export class NavbarComponent {
   
-  // Permite personalizar los items del menú desde el padre (opcional)
   @Input() menuItems: MenuItem[] = [
     { label: 'Inicio', route: '/' },
     { label: 'Sobre nosotros', route: '/sobre-nosotros' },
@@ -22,7 +21,6 @@ export class NavbarComponent {
     { label: 'Contáctanos', route: '/contacto' }
   ];
 
-  // Estado del menú mobile (para implementación responsive futura)
   mobileMenuOpen = false;
 
   constructor() { }
@@ -33,7 +31,6 @@ export class NavbarComponent {
 
   onReservarClick(): void {
     console.log('🎯 Botón Reservar clickeado');
-    // TODO: Implementar lógica de reserva o redirigir a sistema de reservas
     alert('Sistema de reservas próximamente. Por favor contacta al +503 1234-5678');
   }
 }

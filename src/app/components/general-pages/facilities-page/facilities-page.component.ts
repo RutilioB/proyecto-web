@@ -6,7 +6,6 @@ import { Component } from '@angular/core';
 })
 export class FacilitiesPageComponent {
 
-  // Instalaciones del hotel
   facilities = [
     {
       name: 'Piscina Infinity',

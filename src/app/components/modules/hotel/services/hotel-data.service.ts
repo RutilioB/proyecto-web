@@ -283,7 +283,6 @@ export class HotelDataService {
     console.log('---');
     console.log('⚠️ NOTA: En producción, esta información se enviará al backend mediante HTTP POST');
     
-    // Simulación de respuesta exitosa
     alert('¡Gracias por tu interés! Hemos recibido tu solicitud y nos pondremos en contacto contigo pronto.');
   }
 }
