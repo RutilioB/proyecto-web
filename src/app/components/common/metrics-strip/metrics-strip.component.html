@@ -1,0 +1,19 @@
+<section class="bg-white py-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      
+      
+      <div 
+        *ngFor="let metric of metrics" 
+        class="text-center p-6 rounded-lg hover:shadow-lg transition-shadow">
+        
+        <div class="text-4xl font-bold text-primary mb-2">{{ metric.valor }}</div>
+        <h3 class="text-xl font-semibold text-gray-900 mb-2">{{ metric.titulo }}</h3>
+        <p class="text-gray-600 text-sm">{{ metric.descripcion }}</p>
+        
+      </div>
+
+    </div>
+  </div>
+</section>

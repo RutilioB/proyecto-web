@@ -1,0 +1,89 @@
+<div>
+
+  
+  <app-hero
+    [title]="heroConfig.title"
+    [subtitle]="heroConfig.subtitle"
+    [description]="heroConfig.description"
+    [primaryButtonText]="heroConfig.primaryButtonText"
+    [secondaryButtonText]="heroConfig.secondaryButtonText"
+    [imageUrl]="heroConfig.imageUrl">
+  </app-hero>
+
+  
+  <app-metrics-strip [metrics]="metrics"></app-metrics-strip>
+
+  
+  <section class="py-20 bg-gradient-to-b from-slate-50 via-blue-50 to-slate-50 relative overflow-hidden">
+    
+    
+    <div class="absolute inset-0 opacity-30">
+      <div class="absolute top-20 right-20 w-96 h-96 bg-primary/20 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-20 left-20 w-96 h-96 bg-accent/20 rounded-full blur-3xl"></div>
+      <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-secondary/10 rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      
+      <div class="text-center mb-20">
+        <h2 class="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
+          Descubre tu refugio perfecto
+        </h2>
+        <p class="text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto">
+          En Costa Azul Oceanfront Hotel, cada momento esta diseñado para ofrecerte 
+          una experiencia inolvidable. Desde nuestras habitaciones con vista al mar 
+          hasta nuestras exclusivas experiencias, todo esta pensado para tu confort y disfrute.
+        </p>
+      </div>
+
+      
+      <div class="mb-16">
+        <div class="text-center mb-12">
+          <h3 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Experiencias unicas te esperan</h3>
+          <p class="text-lg text-gray-600">Descubre actividades diseñadas para crear recuerdos inolvidables</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+          <article 
+            *ngFor="let experience of featuredExperiences" 
+            class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl hover:shadow-2xl transition-all p-8 border border-gray-200/50 hover:border-primary/50 transform hover:-translate-y-2 group">
+            
+            <div class="text-5xl mb-4 text-center group-hover:scale-110 transition-transform">{{ experience.icono }}</div>
+            <h4 class="text-xl font-semibold text-gray-900 mb-2 text-center">{{ experience.titulo }}</h4>
+            <p class="text-sm text-primary font-medium mb-3 text-center capitalize">{{ experience.tipo }}</p>
+            <p class="text-gray-600 mb-6 text-sm text-center">{{ experience.descripcion }}</p>
+            <a routerLink="/experiencias" class="block text-center text-primary hover:text-secondary font-semibold transition-colors group-hover:underline">
+              Conoce mas →
+            </a>
+            
+          </article>
+        </div>
+
+        <div class="text-center">
+          <a routerLink="/experiencias" class="inline-block bg-gradient-to-r from-primary to-secondary text-white px-10 py-4 rounded-full font-bold hover:shadow-2xl hover:shadow-primary/50 transition-all transform hover:scale-105">
+            Ver todas las experiencias
+          </a>
+        </div>
+      </div>
+
+      
+      <div class="text-center bg-gradient-to-r from-primary via-secondary to-primary rounded-3xl p-12 shadow-2xl">
+        <h3 class="text-3xl sm:text-4xl font-bold text-white mb-4">¿Listo para tu proxima aventura?</h3>
+        <p class="text-xl mb-8 text-blue-100">
+          Reserva ahora y obten las mejores tarifas disponibles
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a routerLink="/habitaciones" class="bg-white text-primary px-8 py-4 rounded-full font-bold hover:bg-gray-100 transition-all transform hover:scale-105 shadow-lg">
+            Ver habitaciones
+          </a>
+          <a routerLink="/contacto" class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-bold hover:bg-white hover:text-primary transition-all transform hover:scale-105">
+            Contactanos
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</div>

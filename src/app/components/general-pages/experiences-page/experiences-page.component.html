@@ -1,0 +1,148 @@
+<div>
+
+  
+  <header class="bg-gradient-to-r from-primary to-secondary text-white py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl sm:text-5xl font-bold mb-4">Experiencias</h1>
+      <p class="text-xl text-blue-100">
+        Descubre actividades únicas que harán de tu estadía una experiencia inolvidable
+      </p>
+    </div>
+  </header>
+
+  
+  <section class="bg-white py-6 shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <span class="text-gray-700 font-semibold">Filtrar por:</span>
+        <div class="flex flex-wrap justify-center gap-2">
+          <button
+            *ngFor="let type of experienceTypes"
+            [class]="selectedFilter === type.value ? 'bg-primary text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'"
+            class="px-6 py-2 rounded-full font-medium transition-all transform hover:scale-105"
+            (click)="onFilterChange(type.value)">
+            {{ type.label }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <article 
+          *ngFor="let experience of filteredExperiences" 
+          class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition-all transform hover:-translate-y-2">
+          
+          
+          <div class="relative h-48 overflow-hidden" *ngIf="experience.imagenUrl">
+            <img 
+              [src]="experience.imagenUrl" 
+              [alt]="experience.titulo"
+              class="w-full h-full object-cover">
+          </div>
+
+          
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-3">
+              <span class="bg-primary text-white text-xs px-3 py-1 rounded-full capitalize">{{ experience.tipo }}</span>
+            </div>
+            
+            <h2 class="text-xl font-bold text-gray-900 mb-2">{{ experience.titulo }}</h2>
+            <p class="text-gray-600 text-sm mb-4">{{ experience.descripcion }}</p>
+            
+            <button 
+              (click)="onExperienceClick(experience)"
+              class="w-full bg-primary text-white py-2 rounded-lg font-semibold hover:bg-secondary transition-colors">
+              Mas informacion
+            </button>
+          </div>
+
+        </article>
+      </div>
+
+      
+      <div *ngIf="filteredExperiences.length === 0" class="text-center py-16">
+        <p class="text-2xl text-gray-500">
+          No se encontraron experiencias para este filtro
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  
+  <div *ngIf="showInfoModal && selectedExperience" class="fixed inset-0 z-50 overflow-y-auto animate-fade-in" (click)="closeInfoModal()">
+    
+    <div class="fixed inset-0 bg-black/70 backdrop-blur-sm"></div>
+    
+    
+    <div class="flex min-h-screen items-center justify-center p-4">
+      <div class="relative bg-white rounded-2xl shadow-2xl max-w-3xl w-full animate-fade-in-up" (click)="$event.stopPropagation()">
+        
+        
+        <button 
+          (click)="closeInfoModal()"
+          class="absolute top-4 right-4 z-10 bg-white/90 hover:bg-white rounded-full p-2 shadow-lg transition-all">
+          <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+
+        
+        <div class="relative h-64 overflow-hidden rounded-t-2xl" *ngIf="selectedExperience.imagenUrl">
+          <img [src]="selectedExperience.imagenUrl" [alt]="selectedExperience.titulo" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+          <div class="absolute bottom-6 left-6 text-white">
+            <span class="bg-primary text-white text-sm px-4 py-2 rounded-full capitalize mb-3 inline-block">{{ selectedExperience.tipo }}</span>
+            <h2 class="text-3xl font-bold">{{ selectedExperience.titulo }}</h2>
+          </div>
+        </div>
+
+        
+        <div class="p-8">
+          
+          
+          <div class="mb-6">
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">Descripción</h3>
+            <p class="text-gray-600 leading-relaxed mb-4">{{ selectedExperience.descripcion }}</p>
+            <p class="text-gray-600 leading-relaxed" *ngIf="selectedExperience.descripcionDetallada">{{ selectedExperience.descripcionDetallada }}</p>
+          </div>
+
+          
+          <div class="flex justify-center pt-6 border-t border-gray-200">
+            <button 
+              (click)="closeInfoModal()"
+              class="px-8 py-3 bg-gray-100 text-gray-700 rounded-xl font-bold hover:bg-gray-200 transition-colors">
+              Cerrar
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl font-bold text-gray-900 mb-6">Reserva tus experiencias</h2>
+      <p class="text-gray-600 mb-4 leading-relaxed">
+        Todas nuestras experiencias pueden ser reservadas con anticipación o 
+        durante tu estadía. Algunas actividades están sujetas a disponibilidad 
+        y condiciones climáticas.
+      </p>
+      <p class="text-gray-600 mb-8 leading-relaxed">
+        Para reservar o consultar precios y horarios, contacta a nuestro equipo 
+        de concierge o visita la recepción del hotel.
+      </p>
+      <a routerLink="/contacto" class="inline-block bg-primary text-white px-8 py-3 rounded-full font-semibold hover:bg-secondary transition-all transform hover:scale-105 shadow-lg">
+        Contactar concierge
+      </a>
+    </div>
+  </section>
+
+</div>

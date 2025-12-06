@@ -1,0 +1,112 @@
+<div>
+
+  
+  <header class="bg-gradient-to-r from-primary to-secondary text-white py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl sm:text-5xl font-bold mb-4">Sobre nosotros</h1>
+      <p class="text-xl text-blue-100">Más de 25 años creando experiencias inolvidables</p>
+    </div>
+  </header>
+
+  
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-3xl font-bold text-gray-900 mb-6">Nuestra historia</h2>
+          <p class="text-gray-600 mb-4 leading-relaxed">
+            Fundado en {{ hotelInfo.founded }}, Costa Azul Oceanfront Hotel nació del 
+            sueño de crear un refugio donde los viajeros pudieran conectar con la 
+            impresionante belleza del Océano Pacífico salvadoreño.
+          </p>
+          <p class="text-gray-600 mb-4 leading-relaxed">
+            Ubicados en {{ hotelInfo.location }}, hemos sido testigos de la transformación 
+            de esta región en uno de los destinos de playa más importantes de Centroamérica. 
+            A lo largo de estos años, hemos mantenido nuestro compromiso con la excelencia 
+            y la hospitalidad auténtica.
+          </p>
+          <p class="text-gray-600 leading-relaxed">
+            Hoy, somos más que un hotel: somos un hogar lejos de casa para viajeros de 
+            todo el mundo que buscan autenticidad, confort y aventura.
+          </p>
+        </div>
+        <div>
+          <img 
+            src="https://images.unsplash.com/photo-1566073771259-6a8506099945" 
+            alt="Costa Azul Hotel"
+            class="rounded-lg shadow-xl w-full h-auto">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl font-bold text-gray-900 mb-6">Nuestra misión</h2>
+      <p class="text-xl text-gray-700 mb-6 leading-relaxed">{{ hotelInfo.mission }}</p>
+      <p class="text-lg text-gray-600">
+        <strong class="text-primary">Nuestra filosofía:</strong> {{ hotelInfo.philosophy }}
+      </p>
+    </div>
+  </section>
+
+  
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-gray-900 mb-12 text-center">Nuestros valores</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <article 
+          *ngFor="let value of values" 
+          class="text-center p-6 bg-gray-50 rounded-lg hover:shadow-lg transition-shadow">
+          <div class="text-5xl mb-4">{{ value.icon }}</div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">{{ value.title }}</h3>
+          <p class="text-gray-600 text-sm">{{ value.description }}</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Nuestra ubicación</h2>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div>
+          <p class="text-gray-600 mb-6 leading-relaxed">
+            Estamos estratégicamente ubicados en Playa El Tunco, una de las playas 
+            más hermosas y vibrantes de La Libertad, El Salvador. Nuestro hotel 
+            ofrece acceso directo a la playa y está rodeado de restaurantes, 
+            tiendas de surf y la auténtica cultura costera salvadoreña.
+          </p>
+          <ul class="space-y-3">
+            <li class="flex items-center text-gray-700"><span class="mr-3 text-2xl">📍</span> A 45 minutos del Aeropuerto Internacional</li>
+            <li class="flex items-center text-gray-700"><span class="mr-3 text-2xl">🏖️</span> Acceso directo a la playa</li>
+            <li class="flex items-center text-gray-700"><span class="mr-3 text-2xl">🌊</span> Mejores olas para surf en Centroamérica</li>
+            <li class="flex items-center text-gray-700"><span class="mr-3 text-2xl">🍽️</span> Restaurantes y vida nocturna a pasos</li>
+          </ul>
+        </div>
+        <div class="bg-gradient-to-br from-primary to-secondary rounded-lg p-12 text-white flex flex-col items-center justify-center">
+          <p class="text-6xl mb-4">🗺️</p>
+          <p class="text-xl font-semibold mb-2">Mapa interactivo</p>
+          <p class="text-sm text-blue-100">(Integración con Google Maps próximamente)</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="py-16 bg-primary text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl sm:text-4xl font-bold mb-4">Ven a conocernos</h2>
+      <p class="text-xl mb-8 text-blue-100">
+        Descubre por qué miles de viajeros nos eligen año tras año
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a routerLink="/habitaciones" class="bg-white text-primary px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-all transform hover:scale-105 shadow-lg">Ver habitaciones</a>
+        <a routerLink="/contacto" class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-primary transition-all transform hover:scale-105">Contáctanos</a>
+      </div>
+    </div>
+  </section>
+
+</div>

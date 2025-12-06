@@ -1,0 +1,235 @@
+<div>
+
+  
+  <header class="bg-gradient-to-r from-primary to-secondary text-white py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl sm:text-5xl font-bold mb-4">Nuestras habitaciones</h1>
+      <p class="text-xl text-blue-100">
+        Encuentra el espacio perfecto para tu estadía. Todas nuestras habitaciones 
+        ofrecen vista al mar y las mejores comodidades.
+      </p>
+    </div>
+  </header>
+
+  
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <article 
+          *ngFor="let room of rooms" 
+          class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition-shadow">
+          
+          
+          <div class="relative h-64 overflow-hidden">
+            <img 
+              [src]="room.imagenUrl" 
+              [alt]="room.nombre"
+              class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+            <div class="absolute top-4 right-4 bg-accent text-white px-4 py-2 rounded-full font-bold text-lg">
+              ${{ room.precioPorNoche }}
+            </div>
+          </div>
+
+          
+          <div class="p-6">
+            <h2 class="text-2xl font-bold text-gray-900 mb-2">{{ room.nombre }}</h2>
+            <p class="text-gray-600 mb-4">{{ room.descripcionCorta }}</p>
+            
+            
+            <div class="flex items-center gap-6 mb-4 text-gray-700">
+              <span class="flex items-center">
+                <span class="text-xl mr-2">👥</span>
+                <span class="text-sm">{{ room.capacidad }} personas</span>
+              </span>
+              <span class="flex items-center">
+                <span class="text-xl mr-2">💰</span>
+                <span class="text-sm font-semibold">${{ room.precioPorNoche }} / noche</span>
+              </span>
+            </div>
+
+            
+            <div class="flex flex-wrap gap-2 mb-6">
+              <span 
+                *ngFor="let tag of room.etiquetas" 
+                class="bg-blue-50 text-primary text-xs px-3 py-1 rounded-full">
+                {{ tag }}
+              </span>
+            </div>
+
+            
+            <div class="flex gap-3">
+              <button 
+                class="flex-1 bg-gray-100 text-gray-700 px-6 py-2.5 rounded-lg font-semibold hover:bg-gray-200 transition-colors"
+                (click)="onVerDetalles(room)">
+                Ver detalles
+              </button>
+              <button 
+                class="flex-1 bg-primary text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-secondary transition-colors"
+                (click)="onReservar(room)">
+                Reservar
+              </button>
+            </div>
+          </div>
+
+        </article>
+      </div>
+
+    </div>
+  </section>
+
+  
+  <div *ngIf="showModal && selectedRoom" class="fixed inset-0 z-50 overflow-y-auto animate-fade-in" (click)="closeModal()">
+    
+    <div class="fixed inset-0 bg-black/70 backdrop-blur-sm"></div>
+    
+    
+    <div class="flex min-h-screen items-center justify-center p-4">
+      <div class="relative bg-white rounded-2xl shadow-2xl max-w-4xl w-full animate-fade-in-up" (click)="$event.stopPropagation()">
+        
+        
+        <button 
+          (click)="closeModal()"
+          class="absolute top-4 right-4 z-10 bg-white/90 hover:bg-white rounded-full p-2 shadow-lg transition-all">
+          <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+
+        
+        <div class="relative h-80 overflow-hidden rounded-t-2xl">
+          <img [src]="selectedRoom.imagenUrl" [alt]="selectedRoom.nombre" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+          <div class="absolute bottom-6 left-6 text-white">
+            <h2 class="text-4xl font-bold mb-2">{{ selectedRoom.nombre }}</h2>
+            <p class="text-xl text-blue-200">{{ selectedRoom.descripcionCorta }}</p>
+          </div>
+          <div class="absolute top-6 right-6 bg-accent text-white px-6 py-3 rounded-full font-bold text-2xl shadow-lg">
+            ${{ selectedRoom.precioPorNoche }}
+          </div>
+        </div>
+
+        
+        <div class="p-8 max-h-[60vh] overflow-y-auto">
+          
+          
+          <div class="grid grid-cols-2 gap-4 mb-8 pb-6 border-b border-gray-200">
+            <div class="flex items-center text-gray-700">
+              <svg class="w-6 h-6 text-primary mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+              </svg>
+              <div>
+                <p class="text-sm text-gray-500">Capacidad</p>
+                <p class="font-semibold text-lg">{{ selectedRoom.capacidad }} personas</p>
+              </div>
+            </div>
+            <div class="flex items-center text-gray-700">
+              <svg class="w-6 h-6 text-primary mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+              <div>
+                <p class="text-sm text-gray-500">Precio por noche</p>
+                <p class="font-semibold text-lg">${{ selectedRoom.precioPorNoche }}</p>
+              </div>
+            </div>
+          </div>
+
+          
+          <div class="mb-8">
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">Descripcion</h3>
+            <p class="text-gray-600 leading-relaxed">{{ selectedRoom.descripcionLarga }}</p>
+          </div>
+
+          
+          <div class="mb-8">
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">Amenidades</h3>
+            <div class="grid grid-cols-2 gap-3">
+              <div *ngFor="let amenity of selectedRoom.amenidades" class="flex items-center text-gray-700">
+                <span class="text-primary font-bold mr-2">✓</span>
+                <span>{{ amenity }}</span>
+              </div>
+            </div>
+          </div>
+
+          
+          <div class="flex flex-wrap gap-2 mb-8">
+            <span *ngFor="let tag of selectedRoom.etiquetas" class="bg-blue-50 text-primary px-4 py-2 rounded-full text-sm font-medium">
+              {{ tag }}
+            </span>
+          </div>
+
+          
+          <div class="flex gap-4 pt-6 border-t border-gray-200">
+            <button 
+              (click)="closeModal()"
+              class="flex-1 bg-gray-100 text-gray-700 px-8 py-4 rounded-xl font-bold hover:bg-gray-200 transition-colors">
+              Cerrar
+            </button>
+            <button 
+              (click)="onReservar(selectedRoom); closeModal()"
+              class="flex-1 bg-gradient-to-r from-primary to-secondary text-white px-8 py-4 rounded-xl font-bold hover:shadow-xl hover:shadow-primary/50 transition-all transform hover:scale-105">
+              Reservar ahora
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  
+  <section class="py-16 bg-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Todas nuestras habitaciones incluyen</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="flex items-center text-gray-700">
+          <span class="text-primary text-xl mr-3">✓</span>
+          <span>WiFi de alta velocidad gratuito</span>
+        </div>
+        <div class="flex items-center text-gray-700">
+          <span class="text-primary text-xl mr-3">✓</span>
+          <span>Aire acondicionado</span>
+        </div>
+        <div class="flex items-center text-gray-700">
+          <span class="text-primary text-xl mr-3">✓</span>
+          <span>TV por cable</span>
+        </div>
+        <div class="flex items-center text-gray-700">
+          <span class="text-primary text-xl mr-3">✓</span>
+          <span>Caja de seguridad</span>
+        </div>
+        <div class="flex items-center text-gray-700">
+          <span class="text-primary text-xl mr-3">✓</span>
+          <span>Servicio de limpieza diario</span>
+        </div>
+        <div class="flex items-center text-gray-700">
+          <span class="text-primary text-xl mr-3">✓</span>
+          <span>Artículos de baño de cortesía</span>
+        </div>
+        <div class="flex items-center text-gray-700">
+          <span class="text-primary text-xl mr-3">✓</span>
+          <span>Secador de cabello</span>
+        </div>
+        <div class="flex items-center text-gray-700">
+          <span class="text-primary text-xl mr-3">✓</span>
+          <span>Acceso a instalaciones</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="py-16 bg-primary text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl font-bold mb-4">¿Necesitas ayuda para elegir?</h2>
+      <p class="text-xl mb-8 text-blue-100">
+        Nuestro equipo está listo para ayudarte a encontrar la habitación perfecta
+      </p>
+      <a routerLink="/contacto" class="inline-block bg-white text-primary px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-all transform hover:scale-105 shadow-lg">
+        Contáctanos
+      </a>
+    </div>
+  </section>
+
+</div>
